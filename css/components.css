@@ -1,11 +1,185 @@
+/* ===========================
+   CARD PADRÃO
+=========================== */
+
 .card{
 
-    background:white;
+    background:var(--surface);
 
-    border-radius:18px;
+    border:1px solid var(--border);
 
-    padding:25px;
+    border-radius:var(--radius-lg);
 
-    box-shadow:0 10px 25px rgba(0,0,0,.08);
+    padding:24px;
+
+    box-shadow:var(--shadow-sm);
+
+    transition:all .35s ease;
+
+}
+
+/* ===========================
+   HOVER
+=========================== */
+
+.card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:var(--shadow-lg);
+
+    border-color:#E2D7C6;
+
+}
+
+/* ===========================
+   CARDS DO TOPO
+=========================== */
+
+.cards .card{
+
+    text-align:center;
+
+    padding:30px 20px;
+
+}
+
+.cards .card h3{
+
+    font-size:.95rem;
+
+    color:var(--text-light);
+
+    font-weight:500;
+
+    margin-bottom:15px;
+
+}
+
+.cards .card h1{
+
+    font-size:2.3rem;
+
+    font-weight:700;
+
+    color:var(--gold);
+
+    font-family:var(--title-font);
+
+}
+
+/* ===========================
+   AMBIENTES
+=========================== */
+
+.grid .card{
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    min-height:150px;
+
+    gap:15px;
+
+}
+
+.grid .card{
+
+    font-size:1.1rem;
+
+    font-weight:600;
+
+}
+
+.grid .card:hover{
+
+    background:#FFFCF8;
+
+}
+
+/* Emoji */
+
+.grid .card{
+
+    position:relative;
+
+}
+
+.grid .card::before{
+
+    content:"";
+
+    position:absolute;
+
+    width:60px;
+
+    height:60px;
+
+    background:#F8F5F0;
+
+    border-radius:50%;
+
+    top:20px;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    z-index:0;
+
+}
+
+.grid .card{
+
+    overflow:hidden;
+
+}
+
+.grid .card{
+
+    line-height:1.8;
+
+}
+
+/* ===========================
+   ÚLTIMOS ITENS
+=========================== */
+
+.ultimos .card{
+
+    align-items:center;
+
+    padding:18px 24px;
+
+    margin-bottom:15px;
+
+}
+
+.ultimos .card span{
+
+    color:var(--gold);
+
+    font-weight:700;
+
+    font-size:1rem;
+
+}
+
+/* ===========================
+   TÍTULOS
+=========================== */
+
+h2{
+
+    font-family:var(--title-font);
+
+    font-weight:700;
+
+    margin-bottom:20px;
 
 }
