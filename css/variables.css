@@ -1,1 +1,22 @@
-teste
+:root {
+
+    /* Cores */
+    --white: #FFFFFF;
+    --background: #FDFBF8;
+    --cream: #F8F5F0;
+    --beige: #E8DDCF;
+    --gold: #C9A227;
+    --gold-dark: #B28D19;
+    --gray: #5C5C5C;
+    --gray-light: #A5A5A5;
+    --border: #E8E2D8;
+
+    /* Fontes */
+    --title-font: "Playfair Display", serif;
+    --text-font: "Poppins", sans-serif;
+
+    /* Tamanhos */
+    --radius: 18px;
+    --transition: .3s;
+
+}
