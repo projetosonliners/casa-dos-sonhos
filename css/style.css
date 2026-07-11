@@ -1,1 +1,29 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
+body{
+
+    background:var(--background);
+
+    color:var(--gray);
+
+    font-family:var(--text-font);
+
+}
+
+a{
+
+    text-decoration:none;
+
+    color:inherit;
+
+}
+
+img{
+
+    max-width:100%;
+
+}
