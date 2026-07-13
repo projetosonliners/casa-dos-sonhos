@@ -2,8 +2,8 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Feliz Aniversário, Jhonatas❤️</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Feliz Aniversário, Jhonatas!❤️</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Playfair+Display:wght@700;900&family=Great+Vibes&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -33,15 +33,21 @@
             100% { transform: translateY(-10vh) scale(1.6) rotate(360deg); opacity: 0; }
         }
 
-        /* ENVELOPE VERMELHO GIGANTE */
-        .envelope-wrapper { perspective: 1200px; }
+        /* ENVELOPE VERMELHO GIGANTE - TOTALMENTE AJUSTADO PARA CELULAR */
+        .envelope-wrapper { 
+            perspective: 1200px; 
+            width: 100%;
+            max-width: 320px;
+            height: 230px;
+            position: relative;
+        }
         .envelope {
             position: relative;
-            width: 360px;
-            height: 250px;
-            background: #e11d48; /* Vermelho vibrante */
+            width: 100%;
+            height: 220px;
+            background: #e11d48; /* Vermelho apaixonado */
             border-radius: 0 0 16px 16px;
-            box-shadow: 0 20px 40px rgba(225, 29, 72, 0.25);
+            box-shadow: 0 15px 35px rgba(225, 29, 72, 0.25);
             cursor: pointer;
             transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             transform-style: preserve-3d;
@@ -52,9 +58,9 @@
         .envelope-flap {
             position: absolute;
             top: 0; left: 0; width: 0; height: 0;
-            border-left: 180px solid transparent;
-            border-right: 180px solid transparent;
-            border-top: 140px solid #be123c; /* Vermelho escuro do lacre */
+            border-left: 160px solid transparent;
+            border-right: 160px solid transparent;
+            border-top: 120px solid #be123c; /* Vermelho escuro do lacre */
             transform-origin: top;
             transition: transform 0.4s ease 0.2s, z-index 0.2s ease 0.2s;
             z-index: 4;
@@ -71,39 +77,43 @@
             border-radius: 0 0 16px 16px;
             z-index: 3;
         }
+        
+        /* CORREÇÃO DO BUG DA CARTA: Opacidade zero e clique bloqueado quando fechada */
         .letter {
             position: absolute;
-            top: 15px; left: 15px; width: 330px; height: 220px;
+            top: 10px; left: 10px; width: 300px; height: 200px;
             background: #fffdfb;
-            padding: 24px;
+            padding: 18px;
             border-radius: 12px;
-            transition: transform 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+            transition: transform 0.7s cubic-bezier(0.19, 1, 0.22, 1), opacity 0.4s ease;
             z-index: 2;
             border: 2px solid #fecdd3;
             box-shadow: inset 0 0 15px rgba(225, 29, 72, 0.05);
+            opacity: 0;
+            pointer-events: none; /* Evita cliques indesejados quando fechada */
         }
         .letter.pulled {
-            transform: translateY(-240px) scale(1.12);
+            transform: translateY(-200px) scale(1.06);
             z-index: 10;
             height: auto;
-            max-height: 480px;
+            max-height: 440px;
+            opacity: 1;
+            pointer-events: auto; /* Permite rolar e editar o texto após abrir */
             overflow-y: auto;
-            width: 360px;
-            left: 0px;
             box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
         }
 
         /* Estilo Polaroid Realista */
         .polaroid {
             background: white;
-            padding: 16px 16px 42px 16px;
-            box-shadow: 0 12px 30px rgba(76, 17, 34, 0.08);
+            padding: 12px 12px 32px 12px;
+            box-shadow: 0 12px 25px rgba(76, 17, 34, 0.08);
             border: 1px solid rgba(254, 205, 211, 0.4);
             border-radius: 4px;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         .polaroid:hover { 
-            transform: rotate(0deg) scale(1.08); 
+            transform: rotate(0deg) scale(1.05); 
             z-index: 20;
             box-shadow: 0 20px 40px rgba(76, 17, 34, 0.15);
         }
@@ -117,88 +127,89 @@
         .memory-card.flipped .memory-card-inner { transform: rotateY(180deg); }
         .memory-card-front, .memory-card-back {
             position: absolute; width: 100%; height: 100%;
-            backface-visibility: hidden; border-radius: 16px;
+            backface-visibility: hidden; border-radius: 12px;
             display: flex; align-items: center; justify-content: center;
-            box-shadow: 0 8px 16px rgba(76, 17, 34, 0.05);
+            box-shadow: 0 6px 12px rgba(76, 17, 34, 0.05);
         }
         .memory-card-back { 
             background: linear-gradient(135deg, #ffe4e6 0%, #fecdd3 100%); 
             border: 2px solid #fda4af; 
             color: #e11d48; 
-            font-size: 2.2rem; 
+            font-size: 1.8rem; 
         }
         .memory-card-front { 
             background: white; 
             border: 2px solid #fecdd3; 
             transform: rotateY(180deg); 
-            font-size: 2.8rem; 
+            font-size: 2.2rem; 
         }
     </style>
 </head>
-<body class="min-h-screen pb-20">
+<body class="min-h-screen pb-20 px-3 md:px-0">
 
     <!-- Fundo de Corações -->
     <div id="heart-container" class="fixed inset-0 overflow-hidden pointer-events-none z-0"></div>
 
     <!-- PLAYER DE MÚSICA ("Tantos Mares") -->
-    <div class="fixed bottom-6 right-6 z-50">
-        <div class="bg-white/95 backdrop-blur-md border border-rose-100 p-4 rounded-2xl shadow-2xl flex items-center gap-4 transition-all hover:scale-105">
-            <button onclick="toggleMusic()" class="w-12 h-12 bg-red-500 hover:bg-red-600 rounded-full flex items-center justify-center text-white shadow-lg transition-colors">
-                <i id="play-icon" class="fas fa-heart text-xl animate-pulse"></i>
+    <div class="fixed bottom-4 right-4 z-50 max-w-[280px]">
+        <div class="bg-white/95 backdrop-blur-md border border-rose-100 p-3 rounded-2xl shadow-2xl flex items-center gap-3 transition-all hover:scale-105">
+            <button onclick="toggleMusic()" class="w-10 h-10 bg-red-500 hover:bg-red-600 rounded-full flex items-center justify-center text-white shadow-lg transition-colors flex-shrink-0">
+                <i id="play-icon" class="fas fa-heart text-base animate-pulse"></i>
             </button>
-            <div>
-                <p class="font-bold text-red-950 text-sm">Tantos Mares 🎵</p>
-                <p class="text-gray-500 text-xs">Tocando instrumento de amor</p>
+            <div class="overflow-hidden">
+                <p class="font-bold text-red-950 text-xs truncate">Tantos Mares 🎵</p>
+                <p class="text-gray-500 text-[10px] truncate">Pedro Valença (Violão Acústico)</p>
             </div>
         </div>
     </div>
 
     <!-- Mensagens Rápidas (Toasts) -->
-    <div id="toast-container" class="fixed top-6 right-6 z-[100] flex flex-col gap-2"></div>
+    <div id="toast-container" class="fixed top-4 right-4 z-[100] flex flex-col gap-2 max-w-[300px]"></div>
 
     <!-- Menu Superior -->
-    <header class="relative z-10 w-full px-6 py-5 flex flex-wrap gap-4 justify-between items-center bg-white/70 backdrop-blur-md border-b border-rose-100">
-        <span class="font-serif-romantic font-black text-red-700 text-2xl tracking-wide">De Maylane para Jhonatas ❤️</span>
-        <div class="flex gap-3">
-            <button onclick="toggleEditMode()" class="px-6 py-3 bg-red-500 hover:bg-red-600 text-white rounded-full text-base font-bold shadow-md transition-transform active:scale-95">
-                <i class="fas fa-edit mr-2"></i> Ativar Modo Edição
+    <header class="relative z-10 w-full px-4 py-4 flex flex-col sm:flex-row gap-3 justify-between items-center bg-white/70 backdrop-blur-md border-b border-rose-100 rounded-2xl mt-2">
+        <span class="font-serif-romantic font-black text-red-700 text-lg md:text-xl text-center sm:text-left">De Maylane para Jhonatas ❤️</span>
+        <div class="flex gap-2 w-full sm:w-auto justify-center">
+            <button onclick="toggleEditMode()" class="flex-1 sm:flex-none px-4 py-2.5 bg-red-500 hover:bg-red-600 text-white rounded-full text-xs font-bold shadow-md transition-transform active:scale-95">
+                <i class="fas fa-edit mr-1"></i> Modo Edição
             </button>
-            <button id="btn-save-html" onclick="downloadHtml()" class="hidden px-6 py-3 bg-emerald-500 hover:bg-emerald-600 text-white rounded-full text-base font-bold shadow-md transition-transform active:scale-95">
-                <i class="fas fa-cloud-download-alt mr-2"></i> Salvar e Baixar Site!
+            <button id="btn-save-html" onclick="downloadHtml()" class="hidden flex-1 sm:flex-none px-4 py-2.5 bg-emerald-500 hover:bg-emerald-600 text-white rounded-full text-xs font-bold shadow-md transition-transform active:scale-95">
+                <i class="fas fa-save mr-1"></i> Salvar e Baixar
             </button>
         </div>
     </header>
 
-    <main class="relative z-10 max-w-5xl mx-auto px-4 mt-12 text-center">
+    <main class="relative z-10 max-w-4xl mx-auto mt-8 text-center px-2">
         
         <!-- Título Gigante e Apaixonado -->
-        <h1 class="text-6xl md:text-8xl font-black font-serif-romantic mb-6 text-red-950 tracking-tight leading-none">
+        <h1 class="text-4xl md:text-7xl font-black font-serif-romantic mb-4 text-red-950 tracking-tight leading-none">
             Feliz Aniversário,<br>
-            <span class="text-red-500 font-cursive text-8xl md:text-9xl block mt-2" id="name-jhonatas">Jhonatas</span>
+            <span class="text-red-500 font-cursive text-6xl md:text-8xl block mt-2" id="name-jhonatas">Jhonatas</span>
         </h1>
         
-        <p class="text-red-900/80 text-xl max-w-2xl mx-auto mb-12 leading-relaxed" id="hero-subtitle">
-            Meu amor, preparei esse espaço todinho para celebrar você, a nossa casinha azul feliz, os nossos gatinhos Sol e Cisco e a nossa coelhinha Jujuba! Sou grata por cada segundo contigo. ❤️
+        <!-- PRIMEIRO TEXTINHO AJUSTADO (Focado em amor puro, sem citar casa e gatos aqui) -->
+        <p class="text-red-900/80 text-base md:text-lg max-w-xl mx-auto mb-8 leading-relaxed px-4" id="hero-subtitle">
+            Meu amor, preparei esse espaço lindo e interativo com todo o carinho do meu coração para celebrar a sua vida! Sou imensamente grata por cada segundo ao seu lado e por ter você como meu parceiro de vida. Feliz aniversário! ❤️
         </p>
 
-        <button onclick="celebrate()" class="mb-16 px-12 py-6 bg-red-500 hover:bg-red-600 text-white font-black rounded-full shadow-2xl text-2xl hover:scale-105 active:scale-95 transition-all">
-            <i class="fas fa-sparkles mr-2"></i> CELEBRAR NOSSO AMOR! 🎉
+        <button onclick="celebrate()" class="mb-12 px-8 py-4 bg-red-500 hover:bg-red-600 text-white font-black rounded-full shadow-xl text-lg hover:scale-105 active:scale-95 transition-all">
+            <i class="fas fa-heart-crack mr-1"></i> Feliz aniversário, amor! 🎉
         </button>
 
-        <!-- NOSSO MINIFILME MÁGICO (CASA E DESENHOS GRANDES) -->
-        <section class="mb-20 max-w-4xl mx-auto bg-white/90 p-6 md:p-10 rounded-[32px] shadow-2xl border border-rose-100">
-            <h2 class="text-3xl font-serif-romantic font-black text-red-950 mb-2">🎥 Nosso Minifilme Mágico</h2>
-            <p class="text-red-800/60 mb-6 text-sm">Nossa casinha cinza-azul, nós dois e nossos filhinhos de quatro patas brincando juntos!</p>
+        <!-- NOSSO MINIFILME MÁGICO (CASA AZUL E BICHINHOS GRANDES) -->
+        <section class="mb-14 max-w-3xl mx-auto bg-white/90 p-4 md:p-8 rounded-[24px] shadow-xl border border-rose-100">
+            <h2 class="text-2xl md:text-3xl font-serif-romantic font-black text-red-950 mb-1">🎥 Nosso Minifilme Mágico</h2>
+            <p class="text-red-800/60 mb-4 text-xs">Nossa casinha cinza-azul, nós dois e nossos filhinhos de quatro patas!</p>
             
-            <div class="relative w-full aspect-[16/10] bg-[#fdfaf7] rounded-3xl border-4 border-rose-200 overflow-hidden shadow-inner">
+            <div class="relative w-full aspect-[16/10] bg-[#fdfaf7] rounded-2xl border-2 border-rose-200 overflow-hidden shadow-inner">
                 <canvas id="movie-canvas" class="w-full h-full block"></canvas>
                 
                 <!-- Controles do Desenho -->
-                <div class="absolute bottom-6 left-1/2 transform -translate-x-1/2 flex gap-4 w-11/12 justify-center flex-wrap">
-                    <button onclick="makeRabbitHop()" class="px-5 py-3 bg-white/95 border border-rose-200 font-extrabold text-red-700 rounded-2xl shadow-lg text-sm hover:scale-105 active:scale-95 transition-all">
+                <div class="absolute bottom-3 left-1/2 transform -translate-x-1/2 flex gap-2 w-11/12 justify-center flex-wrap">
+                    <button onclick="makeRabbitHop()" class="px-3 py-2 bg-white/95 border border-rose-200 font-extrabold text-red-700 rounded-xl shadow-md text-[11px] hover:scale-105 active:scale-95 transition-all">
                         🐰 Jujuba, pula!
                     </button>
-                    <button onclick="makeCatsPlay()" class="px-5 py-3 bg-white/95 border border-rose-200 font-extrabold text-red-700 rounded-2xl shadow-lg text-sm hover:scale-105 active:scale-95 transition-all">
+                    <button onclick="makeCatsPlay()" class="px-3 py-2 bg-white/95 border border-rose-200 font-extrabold text-red-700 rounded-xl shadow-md text-[11px] hover:scale-105 active:scale-95 transition-all">
                         🐱 Brincar com Sol e Cisco!
                     </button>
                 </div>
@@ -206,31 +217,31 @@
         </section>
 
         <!-- ENVELOPE VERMELHO GIGANTE -->
-        <section class="mb-24 flex flex-col items-center">
-            <h2 class="text-4xl font-serif-romantic font-black text-red-950 mb-3">Abra com Carinho 💌</h2>
-            <p class="text-red-800/60 mb-8 text-sm">Toque no envelope vermelho para ler minha cartinha especial de parabéns</p>
+        <section class="mb-16 flex flex-col items-center">
+            <h2 class="text-2xl md:text-3xl font-serif-romantic font-black text-red-950 mb-1">Abra com Carinho 💌</h2>
+            <p class="text-red-800/60 mb-6 text-xs">Toque no envelope vermelho para ler minha cartinha especial de parabéns</p>
             
-            <div class="envelope-wrapper h-[350px] w-[380px] flex justify-center">
+            <div class="envelope-wrapper flex justify-center">
                 <div class="envelope" id="love-envelope" onclick="openEnvelope()">
                     <div class="envelope-flap" id="envelope-flap"></div>
                     <div class="envelope-pocket">
                         <!-- Selo de Cera Dourado de Coração -->
-                        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 w-20 h-20 bg-amber-400 rounded-full flex items-center justify-center text-red-600 text-4xl shadow-xl border-4 border-amber-300">
+                        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 w-16 h-16 bg-amber-400 rounded-full flex items-center justify-center text-red-600 text-3xl shadow-xl border-4 border-amber-300">
                             ❤️
                         </div>
                     </div>
                     <!-- Carta Interna que sobe -->
                     <div class="letter text-left flex flex-col justify-between" id="love-letter">
                         <div>
-                            <div class="flex justify-between border-b border-rose-100 pb-3 mb-3">
-                                <span class="font-black text-red-800 text-lg">De: Maylane 🌹</span>
-                                <span class="text-sm text-red-400 font-bold">Para: Jhonatas</span>
+                            <div class="flex justify-between border-b border-rose-100 pb-2 mb-2">
+                                <span class="font-black text-red-800 text-sm">De: Maylane 🌹</span>
+                                <span class="text-[11px] text-red-400 font-bold">Para: Jhonatas</span>
                             </div>
-                            <div id="letter-content" class="text-base leading-relaxed text-red-950 max-h-[220px] overflow-y-auto pr-2 outline-none" contenteditable="false">
+                            <div id="letter-content" class="text-xs leading-relaxed text-red-950 max-h-[160px] overflow-y-auto pr-1 outline-none" contenteditable="false">
                                 Meu amor, Jhonatas... Escrever sobre você é fácil porque meu coração bate no ritmo do seu sorriso. Você é o meu porto seguro, meu lar e minha paz diária. Obrigado por cuidar tão bem de mim, do Cisco, da Sol e de nossa coelhinha Jujuba com tanto amor e dedicação. Estar na nossa casinha com você é o melhor presente que a vida poderia me dar. Feliz aniversário, meu eterno namorado, marido e companheiro! Te amo infinito!
                             </div>
                         </div>
-                        <button onclick="closeEnvelope(event)" class="mt-4 w-full py-3 bg-red-600 hover:bg-red-700 text-white rounded-xl font-bold text-sm uppercase tracking-wider shadow-md">
+                        <button onclick="closeEnvelope(event)" class="mt-3 w-full py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg font-bold text-xs uppercase tracking-wider shadow-md">
                             Fechar Cartinha 💌
                         </button>
                     </div>
@@ -239,64 +250,64 @@
         </section>
 
         <!-- MURAL POLAROID COM ENVIO REAL -->
-        <section class="mb-24 max-w-5xl mx-auto px-4">
-            <h2 class="text-4xl font-serif-romantic font-black text-red-950 mb-2">Nossas Fotos de Amor 📸</h2>
-            <p class="text-red-800/60 mb-8 text-sm">Momentos capturados do nosso coração. Ative o "Modo Edição" acima para adicionar novas fotos reais!</p>
+        <section class="mb-16 max-w-3xl mx-auto px-2">
+            <h2 class="text-2xl md:text-3xl font-serif-romantic font-black text-red-950 mb-1">Nossas Fotos de Amor 📸</h2>
+            <p class="text-red-800/60 mb-6 text-xs">Momentos capturados do nosso coração. Ative o "Modo Edição" para carregar fotos reais de vocês!</p>
             
             <!-- Painel de Envio de Novas Fotos (Aparece no Modo Edição) -->
-            <div id="edit-photo-area" class="hidden mb-12 p-8 border-4 border-dashed border-red-300 rounded-[32px] bg-red-50/50 backdrop-blur-sm">
-                <p class="font-extrabold text-red-800 text-xl mb-4">Selecione uma foto maravilhosa de vocês dois:</p>
-                <label class="cursor-pointer bg-red-500 hover:bg-red-600 text-white px-8 py-4 rounded-full font-black shadow-xl inline-block hover:scale-105 active:scale-95 transition-all text-base">
-                    <i class="fas fa-images mr-2"></i> CARREGAR FOTO REAL 📸
+            <div id="edit-photo-area" class="hidden mb-8 p-6 border-2 border-dashed border-red-300 rounded-[20px] bg-red-50/50 backdrop-blur-sm">
+                <p class="font-extrabold text-red-800 text-sm mb-3">Selecione uma foto maravilhosa de vocês dois:</p>
+                <label class="cursor-pointer bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-full font-black shadow-lg inline-block hover:scale-105 active:scale-95 transition-all text-xs">
+                    <i class="fas fa-images mr-1"></i> CARREGAR FOTO REAL 📸
                     <input type="file" id="file-upload" class="hidden" accept="image/*" onchange="processPhoto(event)">
                 </label>
             </div>
 
             <!-- Grid de Polaroids -->
-            <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12 justify-items-center">
+            <div id="gallery-grid" class="flex flex-wrap gap-8 justify-center items-center">
                 <!-- Fotos serão inseridas de forma dinâmica aqui -->
             </div>
         </section>
 
         <!-- JOGO DA MEMÓRIA DO AMOR -->
-        <section class="mb-24 max-w-2xl mx-auto bg-white/80 p-8 md:p-12 rounded-[32px] shadow-2xl border border-rose-100">
-            <h2 class="text-4xl font-serif-romantic font-black text-red-950 mb-3">Jogo da Memória do Amor 🧩</h2>
-            <p class="text-red-800/60 mb-8 text-sm">Combine os ícones românticos da nossa história. Encontre todos para ganhar um prêmio!</p>
+        <section class="mb-16 max-w-xl mx-auto bg-white/85 p-5 md:p-8 rounded-[24px] shadow-xl border border-rose-100">
+            <h2 class="text-2xl md:text-3xl font-serif-romantic font-black text-red-950 mb-1">Jogo da Memória do Amor 🧩</h2>
+            <p class="text-red-800/60 mb-6 text-xs">Combine as cartinhas do nosso amor para ganhar um beijo!</p>
             
-            <div class="grid grid-cols-4 gap-4" id="memory-game-grid"></div>
+            <div class="grid grid-cols-4 gap-2 md:gap-3" id="memory-game-grid"></div>
             
-            <div class="mt-8 flex justify-between items-center font-bold text-red-950 text-lg border-t border-rose-100 pt-6">
+            <div class="mt-6 flex justify-between items-center font-bold text-red-950 text-sm border-t border-rose-100 pt-4">
                 <span>Jogadas: <span id="game-moves" class="text-red-500 font-black">0</span></span>
-                <button onclick="resetMemoryGame()" class="px-5 py-2 bg-red-100 hover:bg-red-200 text-red-700 rounded-xl text-sm transition-colors">
-                    <i class="fas fa-undo mr-1"></i> Recomeçar Jogo
+                <button onclick="resetMemoryGame()" class="px-3 py-1.5 bg-red-100 hover:bg-red-200 text-red-700 rounded-lg text-xs transition-colors">
+                    <i class="fas fa-undo mr-1"></i> Reiniciar
                 </button>
             </div>
         </section>
 
         <!-- CUPONS DE AMOR RESGATÁVEIS -->
         <section class="mb-12">
-            <h2 class="text-3xl font-serif-romantic font-black text-red-950 mb-8">Cupons de Amor Exclusivos 🎟️</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <h2 class="text-2xl md:text-3xl font-serif-romantic font-black text-red-950 mb-6">Cupons de Amor Exclusivos 🎟️</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <!-- Cupom 1 -->
-                <div class="bg-white hover:bg-rose-50 border-2 border-rose-100 p-8 rounded-3xl shadow-xl relative overflow-hidden transition-all hover:-translate-y-1 cursor-pointer" onclick="redeem(this, 'Jantar Especial de Aniversário 🍝')">
-                    <span class="text-5xl block mb-2">🍝</span>
-                    <h3 class="font-black text-red-900 text-lg mt-2">Jantar Especial</h3>
-                    <p class="text-sm text-gray-500 mt-1">Você escolhe o cardápio e eu cozinho para nós!</p>
-                    <div class="mt-6 text-xs font-black text-red-500 border-t border-rose-100 pt-3 uppercase tracking-widest">Clique para Resgatar</div>
+                <div class="bg-white hover:bg-rose-50 border border-rose-100 p-6 rounded-2xl shadow-md relative overflow-hidden transition-all hover:-translate-y-1 cursor-pointer" onclick="redeem(this, 'Jantar Especial de Aniversário 🍝')">
+                    <span class="text-4xl block mb-1">🍝</span>
+                    <h3 class="font-black text-red-900 text-sm mt-1">Jantar Especial</h3>
+                    <p class="text-xs text-gray-500 mt-1">Você escolhe o cardápio e eu cozinho para nós!</p>
+                    <div class="mt-4 text-[10px] font-black text-red-500 border-t border-rose-100 pt-2 uppercase tracking-widest">Resgatar Cupom</div>
                 </div>
                 <!-- Cupom 2 -->
-                <div class="bg-white hover:bg-rose-50 border-2 border-rose-100 p-8 rounded-3xl shadow-xl relative overflow-hidden transition-all hover:-translate-y-1 cursor-pointer" onclick="redeem(this, 'Cafuné e Massagem de 30min 💆‍♂️')">
-                    <span class="text-5xl block mb-2">💆‍♂️</span>
-                    <h3 class="font-black text-red-900 text-lg mt-2">Vale Massagem & Cafuné</h3>
-                    <p class="text-sm text-gray-500 mt-1">Sessão relaxante completa para renovar as energias.</p>
-                    <div class="mt-6 text-xs font-black text-red-500 border-t border-rose-100 pt-3 uppercase tracking-widest">Clique para Resgatar</div>
+                <div class="bg-white hover:bg-rose-50 border border-rose-100 p-6 rounded-2xl shadow-md relative overflow-hidden transition-all hover:-translate-y-1 cursor-pointer" onclick="redeem(this, 'Cafuné e Massagem de 30min 💆‍♂️')">
+                    <span class="text-4xl block mb-1">💆‍♂️</span>
+                    <h3 class="font-black text-red-900 text-sm mt-1">Vale Massagem</h3>
+                    <p class="text-xs text-gray-500 mt-1">Sessão relaxante de cafuné e massagem bem gostosa.</p>
+                    <div class="mt-4 text-[10px] font-black text-red-500 border-t border-rose-100 pt-2 uppercase tracking-widest">Resgatar Cupom</div>
                 </div>
                 <!-- Cupom 3 -->
-                <div class="bg-white hover:bg-rose-50 border-2 border-rose-100 p-8 rounded-3xl shadow-xl relative overflow-hidden transition-all hover:-translate-y-1 cursor-pointer" onclick="redeem(this, 'Maratona de Filmes Escolhida por Você 🍿')">
-                    <span class="text-5xl block mb-2">🍿</span>
-                    <h3 class="font-black text-red-900 text-lg mt-2">Vale Sessão Cinema</h3>
-                    <p class="text-sm text-gray-500 mt-1">Maratona da sua trilogia ou série favorita sem reclamações!</p>
-                    <div class="mt-6 text-xs font-black text-red-500 border-t border-rose-100 pt-3 uppercase tracking-widest">Clique para Resgatar</div>
+                <div class="bg-white hover:bg-rose-50 border border-rose-100 p-6 rounded-2xl shadow-md relative overflow-hidden transition-all hover:-translate-y-1 cursor-pointer" onclick="redeem(this, 'Maratona de Filmes Escolhida por Você 🍿')">
+                    <span class="text-4xl block mb-1">🍿</span>
+                    <h3 class="font-black text-red-900 text-sm mt-1">Maratona de Filmes</h3>
+                    <p class="text-xs text-gray-500 mt-1">Você escolhe a série ou filme sem eu reclamar!</p>
+                    <div class="mt-4 text-[10px] font-black text-red-500 border-t border-rose-100 pt-2 uppercase tracking-widest">Resgatar Cupom</div>
                 </div>
             </div>
         </section>
@@ -305,25 +316,25 @@
 
     <!-- Modal para legendar fotos adicionadas -->
     <div id="photo-modal" class="hidden fixed inset-0 z-[200] bg-black/60 flex items-center justify-center p-4 backdrop-blur-sm">
-        <div class="bg-white p-8 rounded-[32px] max-w-md w-full shadow-2xl border border-rose-100 transform scale-100 transition-transform">
-            <h3 class="text-2xl font-serif-romantic font-black text-red-950 mb-2">Título da Memória ❤️</h3>
-            <p class="text-xs text-gray-500 mb-4">Escolha um título e legenda bem carinhosos para a sua foto.</p>
-            <input type="text" id="new-photo-title" placeholder="Ex: Nosso piquenique no parque" class="w-full border-2 border-rose-100 p-4 rounded-2xl mb-4 outline-none focus:border-red-400 font-bold">
-            <textarea id="new-photo-desc" placeholder="Ex: Aquele dia incrível em que sorrimos até cansar..." class="w-full border-2 border-rose-100 p-4 rounded-2xl mb-6 outline-none focus:border-red-400 h-24 font-medium"></textarea>
+        <div class="bg-white p-6 rounded-3xl max-w-xs w-full shadow-2xl border border-rose-100">
+            <h3 class="text-xl font-serif-romantic font-black text-red-950 mb-1">Título da Memória ❤️</h3>
+            <p class="text-[10px] text-gray-500 mb-3">Escolha um título e legenda bem carinhosos para a sua foto.</p>
+            <input type="text" id="new-photo-title" placeholder="Ex: Nosso piquenique" class="w-full border border-rose-100 p-3 rounded-xl mb-3 outline-none focus:border-red-400 font-bold text-xs">
+            <textarea id="new-photo-desc" placeholder="Ex: Aquele dia lindo..." class="w-full border border-rose-100 p-3 rounded-xl mb-4 outline-none focus:border-red-400 h-16 font-medium text-xs"></textarea>
             
-            <div class="flex gap-3">
-                <button onclick="cancelPhoto()" class="flex-1 py-3 bg-gray-100 hover:bg-gray-200 rounded-xl font-bold transition-colors">Cancelar</button>
-                <button onclick="addPhotoToGallery()" class="flex-1 py-3 bg-red-500 hover:bg-red-600 text-white rounded-xl font-bold shadow-md transition-colors">Salvar Foto 📸</button>
+            <div class="flex gap-2 text-xs">
+                <button onclick="cancelPhoto()" class="flex-1 py-2 bg-gray-100 hover:bg-gray-200 rounded-lg font-bold">Cancelar</button>
+                <button onclick="addPhotoToGallery()" class="flex-1 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg font-bold">Salvar 📸</button>
             </div>
         </div>
     </div>
 
     <script>
-        // LÓGICA DO FILME EM DESENHO (GIGANTE, COM CASA AZUL)
+        // LÓGICA DO FILME EM DESENHO (MUITO MAIS DETALHADO E RESPONSIVO)
         const canvas = document.getElementById('movie-canvas');
         const ctx = canvas.getContext('2d');
         let rabbitX = 120, rabbitY = 0, isRabbitHopping = false, rabbitTimer = 0;
-        let areCatsPlaying = false, catTimer = 0;
+        let areCatsPlaying = false;
 
         function resizeCanvas() {
             canvas.width = canvas.offsetWidth;
@@ -332,7 +343,7 @@
         window.addEventListener('resize', resizeCanvas);
         resizeCanvas();
 
-        // Loop de Animação
+        // Loop de Animação Principal
         function drawFrame() {
             const w = canvas.width, h = canvas.height;
             if (w === 0 || h === 0) {
@@ -350,167 +361,165 @@
             ctx.ellipse(w / 2, h + 100, w * 0.8, 200, 0, 0, Math.PI * 2);
             ctx.fill();
 
-            // CASINHA AZUL ACINZENTADO/ARDÓSIA (BEM MAIOR)
-            const houseW = 280, houseH = 190;
-            const houseX = w * 0.08, houseY = h - 260;
+            // CASINHA AZUL ACINZENTADO/ARDÓSIA (GIGANTE E ADAPTADA PARA CELULAR)
+            const isMobile = w < 500;
+            const houseW = isMobile ? 180 : 260;
+            const houseH = isMobile ? 120 : 180;
+            const houseX = isMobile ? w * 0.04 : w * 0.08;
+            const houseY = h - (isMobile ? 150 : 230);
             
             // Corpo da Casa
             ctx.fillStyle = "#85a3bd"; // Cinza azulado pedido
             ctx.fillRect(houseX, houseY, houseW, houseH);
-            ctx.strokeStyle = "#475569"; ctx.lineWidth = 4;
+            ctx.strokeStyle = "#475569"; ctx.lineWidth = isMobile ? 2 : 4;
             ctx.strokeRect(houseX, houseY, houseW, houseH);
             
             // Telhado
             ctx.fillStyle = "#e11d48"; // Vermelho
             ctx.beginPath();
-            ctx.moveTo(houseX - 30, houseY);
-            ctx.lineTo(houseX + houseW / 2, houseY - 80);
-            ctx.lineTo(houseX + houseW + 30, houseY);
+            ctx.moveTo(houseX - (isMobile ? 15 : 25), houseY);
+            ctx.lineTo(houseX + houseW / 2, houseY - (isMobile ? 50 : 75));
+            ctx.lineTo(houseX + houseW + (isMobile ? 15 : 25), houseY);
             ctx.closePath();
             ctx.fill();
             ctx.stroke();
 
             // Chaminé com Fumaça Animada
-            const chimX = houseX + houseW - 60, chimY = houseY - 50;
+            const chimX = houseX + houseW - (isMobile ? 40 : 55), chimY = houseY - (isMobile ? 30 : 45);
             ctx.fillStyle = "#475569";
-            ctx.fillRect(chimX, chimY, 30, 50);
-            ctx.strokeRect(chimX, chimY, 30, 50);
+            ctx.fillRect(chimX, chimY, isMobile ? 20 : 25, isMobile ? 30 : 45);
+            ctx.strokeRect(chimX, chimY, isMobile ? 20 : 25, isMobile ? 30 : 45);
 
             // Bolhas de fumaça subindo
-            ctx.fillStyle = "rgba(148, 163, 184, 0.5)";
+            ctx.fillStyle = "rgba(148, 163, 184, 0.45)";
             const smokeOffset = (Date.now() * 0.002) % 1;
             ctx.beginPath();
-            ctx.arc(chimX + 15, chimY - 15 - (smokeOffset * 40), 10 + (smokeOffset * 8), 0, Math.PI * 2);
-            ctx.arc(chimX + 25, chimY - 35 - (smokeOffset * 40), 15 + (smokeOffset * 10), 0, Math.PI * 2);
+            ctx.arc(chimX + 10, chimY - 10 - (smokeOffset * 30), 5 + (smokeOffset * 6), 0, Math.PI * 2);
+            ctx.arc(chimX + 18, chimY - 25 - (smokeOffset * 30), 10 + (smokeOffset * 8), 0, Math.PI * 2);
             ctx.fill();
 
             // Janelas e Portas Iluminadas
             ctx.fillStyle = "#fef08a"; // Amarelo brilhante
-            ctx.fillRect(houseX + 35, houseY + 45, 55, 55);
-            ctx.fillRect(houseX + houseW - 90, houseY + 45, 55, 55);
+            const winSz = isMobile ? 30 : 50;
+            ctx.fillRect(houseX + (isMobile ? 20 : 30), houseY + (isMobile ? 25 : 40), winSz, winSz);
+            ctx.fillRect(houseX + houseW - (isMobile ? 50 : 80), houseY + (isMobile ? 25 : 40), winSz, winSz);
             ctx.strokeStyle = "#475569";
-            ctx.strokeRect(houseX + 35, houseY + 45, 55, 55);
-            ctx.strokeRect(houseX + houseW - 90, houseY + 45, 55, 55);
-            
-            // Cruzeta da janela
-            ctx.beginPath();
-            ctx.moveTo(houseX + 35 + 27, houseY + 45); ctx.lineTo(houseX + 35 + 27, houseY + 45 + 55);
-            ctx.moveTo(houseX + 35, houseY + 45 + 27); ctx.lineTo(houseX + 35 + 55, houseY + 45 + 27);
-            ctx.moveTo(houseX + houseW - 90 + 27, houseY + 45); ctx.lineTo(houseX + houseW - 90 + 27, houseY + 45 + 55);
-            ctx.moveTo(houseX + houseW - 90, houseY + 45 + 27); ctx.lineTo(houseX + houseW - 90 + 55, houseY + 45 + 27);
-            ctx.stroke();
+            ctx.strokeRect(houseX + (isMobile ? 20 : 30), houseY + (isMobile ? 25 : 40), winSz, winSz);
+            ctx.strokeRect(houseX + houseW - (isMobile ? 50 : 80), houseY + (isMobile ? 25 : 40), winSz, winSz);
 
             // Porta de Madeira
             ctx.fillStyle = "#b45309";
-            ctx.fillRect(houseX + houseW/2 - 25, houseY + 100, 50, 90);
-            ctx.strokeRect(houseX + houseW/2 - 25, houseY + 100, 50, 90);
+            const doorW = isMobile ? 30 : 45, doorH = isMobile ? 55 : 80;
+            ctx.fillRect(houseX + houseW/2 - doorW/2, houseY + houseH - doorH, doorW, doorH);
+            ctx.strokeRect(houseX + houseW/2 - doorW/2, houseY + houseH - doorH, doorW, doorH);
 
-            // PERSONAGENS (ESCALA BEM MAIOR)
-            const groundY = h - 60;
-            const coupleX = w * 0.68;
-            const bounce = Math.sin(Date.now() * 0.0035) * 6;
+            // PERSONAGENS (ESCALA GIGANTE E RESPONSIVA)
+            const groundY = h - (isMobile ? 40 : 55);
+            const coupleX = isMobile ? w * 0.70 : w * 0.68;
+            const bounce = Math.sin(Date.now() * 0.0035) * 5;
+            const scaleFactor = isMobile ? 0.75 : 1.1;
 
             // 1. Jhonatas (Branco)
-            const jX = coupleX - 45;
-            const jY = groundY - 110 + bounce;
+            const jX = coupleX - (isMobile ? 25 : 40);
+            const jY = groundY - (isMobile ? 65 : 100) + bounce;
             // Cabeça
-            ctx.fillStyle = "#fee8d6"; ctx.beginPath(); ctx.arc(jX, jY, 24, 0, Math.PI * 2); ctx.fill();
+            ctx.fillStyle = "#fee8d6"; ctx.beginPath(); ctx.arc(jX, jY, 18 * scaleFactor, 0, Math.PI * 2); ctx.fill();
             // Cabelo Castanho Curto
-            ctx.fillStyle = "#7c2d12"; ctx.beginPath(); ctx.arc(jX, jY - 10, 25, Math.PI, 0); ctx.fill();
+            ctx.fillStyle = "#7c2d12"; ctx.beginPath(); ctx.arc(jX, jY - (6 * scaleFactor), 19 * scaleFactor, Math.PI, 0); ctx.fill();
             // Corpo (Camisa Verde)
-            ctx.fillStyle = "#16a34a"; ctx.fillRect(jX - 25, jY + 24, 50, 75);
+            ctx.fillStyle = "#16a34a"; ctx.fillRect(jX - (18 * scaleFactor), jY + (18 * scaleFactor), 36 * scaleFactor, 55 * scaleFactor);
             // Olhos e Sorriso
-            ctx.fillStyle = "#4c1122"; ctx.beginPath(); ctx.arc(jX - 8, jY, 2.5, 0, Math.PI * 2); ctx.arc(jX + 8, jY, 2.5, 0, Math.PI * 2); ctx.fill();
-            ctx.beginPath(); ctx.arc(jX, jY + 8, 8, 0, Math.PI); ctx.stroke();
+            ctx.fillStyle = "#4c1122"; ctx.beginPath(); ctx.arc(jX - (6 * scaleFactor), jY, 2, 0, Math.PI * 2); ctx.arc(jX + (6 * scaleFactor), jY, 2, 0, Math.PI * 2); ctx.fill();
+            ctx.beginPath(); ctx.arc(jX, jY + (6 * scaleFactor), 6 * scaleFactor, 0, Math.PI); ctx.stroke();
             // Etiqueta Jhonatas
-            ctx.fillStyle = "#1e3a8a"; ctx.font = "bold 13px sans-serif"; ctx.fillText("Jhonatas 👦", jX - 35, jY - 45);
+            ctx.fillStyle = "#1e3a8a"; ctx.font = `bold ${isMobile ? '9px' : '12px'} sans-serif`; ctx.fillText("Jhonatas 👦", jX - (25 * scaleFactor), jY - (30 * scaleFactor));
 
             // 2. Maylane (Morena Cacheada)
-            const mX = coupleX + 45;
-            const mY = groundY - 110 - bounce;
+            const mX = coupleX + (isMobile ? 25 : 40);
+            const mY = groundY - (isMobile ? 65 : 100) - bounce;
             // Cachos de Cabelo (Círculos pretos ao fundo)
             ctx.fillStyle = "#1c1917"; 
-            for(let i = 0; i < 10; i++) {
-                const angle = (i / 10) * Math.PI * 2;
-                ctx.beginPath(); ctx.arc(mX + Math.cos(angle)*30, mY - 2 + Math.sin(angle)*24, 15, 0, Math.PI*2); ctx.fill();
+            for(let i = 0; i < 8; i++) {
+                const angle = (i / 8) * Math.PI * 2;
+                ctx.beginPath(); ctx.arc(mX + Math.cos(angle)*(20 * scaleFactor), mY - 2 + Math.sin(angle)*(18 * scaleFactor), 11 * scaleFactor, 0, Math.PI*2); ctx.fill();
             }
-            // Cabeça Maylane
-            ctx.fillStyle = "#9a3412"; ctx.beginPath(); ctx.arc(mX, mY, 24, 0, Math.PI * 2); ctx.fill();
+            // Cabeça Maylane (Ajustada para um marrom claro lindo e quente)
+            ctx.fillStyle = "#cd8c5c"; ctx.beginPath(); ctx.arc(mX, mY, 18 * scaleFactor, 0, Math.PI * 2); ctx.fill();
             // Corpo (Vestido Coral)
-            ctx.fillStyle = "#fb7185"; ctx.fillRect(mX - 25, mY + 24, 50, 75);
+            ctx.fillStyle = "#fb7185"; ctx.fillRect(mX - (18 * scaleFactor), mY + (18 * scaleFactor), 36 * scaleFactor, 55 * scaleFactor);
             // Olhos e Sorriso
-            ctx.fillStyle = "#fff"; ctx.beginPath(); ctx.arc(mX - 8, mY, 3, 0, Math.PI * 2); ctx.arc(mX + 8, mY, 3, 0, Math.PI * 2); ctx.fill();
-            ctx.fillStyle = "#4c1122"; ctx.beginPath(); ctx.arc(mX - 8, mY, 1.5, 0, Math.PI * 2); ctx.arc(mX + 8, mY, 1.5, 0, Math.PI * 2); ctx.fill();
-            ctx.beginPath(); ctx.arc(mX, mY + 8, 8, 0, Math.PI); ctx.stroke();
+            ctx.fillStyle = "#fff"; ctx.beginPath(); ctx.arc(mX - (6 * scaleFactor), mY, 2.5, 0, Math.PI * 2); ctx.arc(mX + (6 * scaleFactor), mY, 2.5, 0, Math.PI * 2); ctx.fill();
+            ctx.fillStyle = "#4c1122"; ctx.beginPath(); ctx.arc(mX - (6 * scaleFactor), mY, 1.2, 0, Math.PI * 2); ctx.arc(mX + (6 * scaleFactor), mY, 1.2, 0, Math.PI * 2); ctx.fill();
+            ctx.beginPath(); ctx.arc(mX, mY + (6 * scaleFactor), 6 * scaleFactor, 0, Math.PI); ctx.stroke();
             // Etiqueta Maylane
-            ctx.fillStyle = "#9d174d"; ctx.fillText("Maylane 👩🏽", mX - 35, mY - 45);
+            ctx.fillStyle = "#9d174d"; ctx.fillText("Maylane 👩🏽", mX - (25 * scaleFactor), mY - (30 * scaleFactor));
 
             // BICHINHOS DE ESTIMAÇÃO
             
             // 1. Sol (Gato Preto e Branco)
-            let solBounce = areCatsPlaying ? Math.abs(Math.sin(Date.now() * 0.012)) * 25 : 0;
-            const sX = coupleX - 140, sY = groundY - 20 - solBounce;
+            let solBounce = areCatsPlaying ? Math.abs(Math.sin(Date.now() * 0.012)) * 18 : 0;
+            const sX = coupleX - (isMobile ? 85 : 125), sY = groundY - (isMobile ? 12 : 18) - solBounce;
             // Corpo
-            ctx.fillStyle = "#111827"; ctx.beginPath(); ctx.ellipse(sX, sY, 22, 14, 0, 0, Math.PI * 2); ctx.fill();
+            ctx.fillStyle = "#111827"; ctx.beginPath(); ctx.ellipse(sX, sY, 16 * scaleFactor, 10 * scaleFactor, 0, 0, Math.PI * 2); ctx.fill();
             // Cabeça
-            ctx.beginPath(); ctx.arc(sX + 16, sY - 10, 12, 0, Math.PI * 2); ctx.fill();
+            ctx.beginPath(); ctx.arc(sX + (12 * scaleFactor), sY - (8 * scaleFactor), 9 * scaleFactor, 0, Math.PI * 2); ctx.fill();
             // Detalhe Branco no Peito e Rosto
             ctx.fillStyle = "#ffffff";
-            ctx.beginPath(); ctx.arc(sX + 2, sY, 10, 0, Math.PI * 2); ctx.fill();
-            ctx.beginPath(); ctx.arc(sX + 18, sY - 8, 6, 0, Math.PI * 2); ctx.fill();
+            ctx.beginPath(); ctx.arc(sX + (2 * scaleFactor), sY, 7 * scaleFactor, 0, Math.PI * 2); ctx.fill();
+            ctx.beginPath(); ctx.arc(sX + (13 * scaleFactor), sY - (6 * scaleFactor), 4 * scaleFactor, 0, Math.PI * 2); ctx.fill();
             // Orelhas pretas
             ctx.fillStyle = "#111827";
-            ctx.beginPath(); ctx.moveTo(sX + 10, sY - 18); ctx.lineTo(sX + 14, sY - 26); ctx.lineTo(sX + 18, sY - 18); ctx.closePath(); ctx.fill();
+            ctx.beginPath(); ctx.moveTo(sX + (7 * scaleFactor), sY - (14 * scaleFactor)); ctx.lineTo(sX + (10 * scaleFactor), sY - (20 * scaleFactor)); ctx.lineTo(sX + (13 * scaleFactor), sY - (14 * scaleFactor)); ctx.closePath(); ctx.fill();
             // Etiqueta Sol
-            ctx.fillStyle = "#4c1122"; ctx.font = "bold 11px sans-serif"; ctx.fillText("Sol 🐱", sX - 15, sY - 32);
+            ctx.fillStyle = "#4c1122"; ctx.font = `bold ${isMobile ? '8px' : '10px'} sans-serif`; ctx.fillText("Sol 🐱", sX - (10 * scaleFactor), sY - (24 * scaleFactor));
 
             // 2. Cisco (Gato Cinza e Branco)
-            let ciscoBounce = areCatsPlaying ? Math.abs(Math.cos(Date.now() * 0.012)) * 25 : 0;
-            const cX = coupleX + 130, cY = groundY - 20 - ciscoBounce;
+            let ciscoBounce = areCatsPlaying ? Math.abs(Math.cos(Date.now() * 0.012)) * 18 : 0;
+            const cX = coupleX + (isMobile ? 85 : 125), cY = groundY - (isMobile ? 12 : 18) - ciscoBounce;
             // Corpo Cinza
-            ctx.fillStyle = "#9ca3af"; ctx.beginPath(); ctx.ellipse(cX, cY, 22, 14, 0, 0, Math.PI * 2); ctx.fill();
+            ctx.fillStyle = "#9ca3af"; ctx.beginPath(); ctx.ellipse(cX, cY, 16 * scaleFactor, 10 * scaleFactor, 0, 0, Math.PI * 2); ctx.fill();
             // Cabeça
-            ctx.beginPath(); ctx.arc(cX - 16, cY - 10, 12, 0, Math.PI * 2); ctx.fill();
+            ctx.beginPath(); ctx.arc(cX - (12 * scaleFactor), cY - (8 * scaleFactor), 9 * scaleFactor, 0, Math.PI * 2); ctx.fill();
             // Detalhe Branco
             ctx.fillStyle = "#ffffff";
-            ctx.beginPath(); ctx.arc(cX - 2, cY, 10, 0, Math.PI * 2); ctx.fill();
-            ctx.beginPath(); ctx.arc(cX - 18, cY - 8, 6, 0, Math.PI * 2); ctx.fill();
+            ctx.beginPath(); ctx.arc(cX - (2 * scaleFactor), cY, 7 * scaleFactor, 0, Math.PI * 2); ctx.fill();
+            ctx.beginPath(); ctx.arc(cX - (13 * scaleFactor), cY - (6 * scaleFactor), 4 * scaleFactor, 0, Math.PI * 2); ctx.fill();
             // Orelhas Cinzas
             ctx.fillStyle = "#9ca3af";
-            ctx.beginPath(); ctx.moveTo(cX - 10, cY - 18); ctx.lineTo(cX - 14, cY - 26); ctx.lineTo(cX - 18, cY - 18); ctx.closePath(); ctx.fill();
+            ctx.beginPath(); ctx.moveTo(cX - (7 * scaleFactor), cY - (14 * scaleFactor)); ctx.lineTo(cX - (10 * scaleFactor), cY - (20 * scaleFactor)); ctx.lineTo(cX - (13 * scaleFactor), cY - (14 * scaleFactor)); ctx.closePath(); ctx.fill();
             // Etiqueta Cisco
-            ctx.fillStyle = "#4c1122"; ctx.fillText("Cisco 🐱", cX - 18, cY - 32);
+            ctx.fillStyle = "#4c1122"; ctx.fillText("Cisco 🐱", cX - (15 * scaleFactor), cY - (24 * scaleFactor));
 
             // 3. Jujuba (Coelha Cinza)
             if (isRabbitHopping) {
                 rabbitTimer += 0.08;
-                rabbitX += 2.5;
-                rabbitY = -Math.abs(Math.sin(rabbitTimer) * 45);
-                if (rabbitX > w) { rabbitX = -40; }
+                rabbitX += 2.0;
+                rabbitY = -Math.abs(Math.sin(rabbitTimer) * 35);
+                if (rabbitX > w) { rabbitX = -30; }
             } else {
                 rabbitY = 0;
             }
-            const rX = isRabbitHopping ? rabbitX : w * 0.45;
-            const rY = groundY - 18 + rabbitY;
+            const rX = isRabbitHopping ? rabbitX : w * 0.44;
+            const rY = groundY - (isMobile ? 10 : 15) + rabbitY;
             // Corpo Cinza Escuro
             ctx.fillStyle = "#57534e"; 
-            ctx.beginPath(); ctx.ellipse(rX, rY, 18, 14, 0, 0, Math.PI * 2); ctx.fill();
+            ctx.beginPath(); ctx.ellipse(rX, rY, 14 * scaleFactor, 10 * scaleFactor, 0, 0, Math.PI * 2); ctx.fill();
             // Cabeça
-            ctx.beginPath(); ctx.arc(rX + 10, rY - 10, 10, 0, Math.PI * 2); ctx.fill();
+            ctx.beginPath(); ctx.arc(rX + (8 * scaleFactor), rY - (7 * scaleFactor), 8 * scaleFactor, 0, Math.PI * 2); ctx.fill();
             // Orelhas compridas
-            ctx.fillRect(rX + 4, rY - 28, 4, 18);
-            ctx.fillRect(rX + 9, rY - 28, 4, 18);
+            ctx.fillRect(rX + (3 * scaleFactor), rY - (20 * scaleFactor), 3 * scaleFactor, 14 * scaleFactor);
+            ctx.fillRect(rX + (7 * scaleFactor), rY - (20 * scaleFactor), 3 * scaleFactor, 14 * scaleFactor);
             // Rabinho felpudo branco
             ctx.fillStyle = "#ffffff";
-            ctx.beginPath(); ctx.arc(rX - 18, rY, 5, 0, Math.PI * 2); ctx.fill();
+            ctx.beginPath(); ctx.arc(rX - (14 * scaleFactor), rY, 4 * scaleFactor, 0, Math.PI * 2); ctx.fill();
             // Etiqueta Jujuba
-            ctx.fillStyle = "#4c1122"; ctx.fillText("Jujuba 🐰", rX - 22, rY - 35);
+            ctx.fillStyle = "#4c1122"; ctx.fillText("Jujuba 🐰", rX - (18 * scaleFactor), rY - (25 * scaleFactor));
 
             // Corações flutuantes vindos do casal
             if (Math.random() < 0.02) {
                 ctx.fillStyle = "#ff0000";
-                ctx.font = "16px Arial";
-                ctx.fillText("❤️", coupleX + (Math.random() * 40 - 20), groundY - 180);
+                ctx.font = "14px Arial";
+                ctx.fillText("❤️", coupleX + (Math.random() * 30 - 15), groundY - (isMobile ? 100 : 150));
             }
 
             requestAnimationFrame(drawFrame);
@@ -530,12 +539,12 @@
             setTimeout(() => { areCatsPlaying = false; }, 4000); 
         }
 
-        // GERENCIADOR DE FOTOS (ESTILO POLAROID)
+        // GERENCIADOR DE FOTOS (ESTILO POLAROID REALISTA)
         let editingMode = false;
         let photoList = [
-            { id: 1, src: "https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=600&auto=format&fit=crop", title: "Nosso Primeiro Dia", desc: "O início da aventura mais linda da minha vida inteira." },
-            { id: 2, src: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?q=80&w=600&auto=format&fit=crop", title: "Sorriso que Ilumina", desc: "Sempre que olho para o seu sorriso, tenho certeza de que estou em casa." },
-            { id: 3, src: "https://images.unsplash.com/photo-1494972308805-463bc619b34e?q=80&w=600&auto=format&fit=crop", title: "Amor na nossa casinha", desc: "Nosso lar abençoado com nossos gatinhos e coelha." }
+            { id: 1, src: "https://images.unsplash.com/photo-1518199266791-5375a83190b7?q=80&w=600&auto=format&fit=crop", title: "Nosso Primeiro Dia", desc: "O início da aventura mais linda de nossas vidas." },
+            { id: 2, src: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?q=80&w=600&auto=format&fit=crop", title: "Sorriso que Ilumina", desc: "Sempre que olho para o seu sorriso, tenho certeza de que estou no lugar certo." },
+            { id: 3, src: "https://images.unsplash.com/photo-1494972308805-463bc619b34e?q=80&w=600&auto=format&fit=crop", title: "Nosso amor feliz", desc: "Nossa vida é mais abençoada e alegre quando estamos juntinhos." }
         ];
         let pendingPhotoBase64 = "";
 
@@ -551,7 +560,7 @@
             // Recarregar galeria para mostrar/ocultar botões de exclusão
             renderGallery();
             
-            showToast(editingMode ? "Modo Edição Ativado! Agora você pode adicionar suas fotos reais e editar a carta! ✏️❤️" : "Modo Edição Desativado!");
+            showToast(editingMode ? "Modo Edição Ativado! Adicione fotos e altere os textos à vontade! ✏️❤️" : "Modo Edição Desativado!");
         }
 
         function processPhoto(e) {
@@ -566,14 +575,14 @@
         }
 
         function addPhotoToGallery() {
-            const title = document.getElementById('new-photo-title').value || "Momento Mágico";
-            const desc = document.getElementById('new-photo-desc').value || "Legenda cheia de amor...";
+            const title = document.getElementById('new-photo-title').value || "Momento Lindo";
+            const desc = document.getElementById('new-photo-desc').value || "Uma memória gravada em nós...";
             const id = Date.now();
             
             photoList.push({ id, src: pendingPhotoBase64, title, desc });
             renderGallery();
             cancelPhoto();
-            showToast("Nossa foto foi adicionada à galeria com sucesso! 📸🎉");
+            showToast("Nossa foto foi adicionada ao mural com muito carinho! 📸🎉");
         }
 
         function cancelPhoto() {
@@ -594,14 +603,13 @@
             grid.innerHTML = "";
             
             photoList.forEach((p, idx) => {
-                // Rotações artísticas para simular varal real
                 const rotation = (idx % 3 === 0) ? '-3deg' : (idx % 3 === 1) ? '3deg' : '-1deg';
                 grid.innerHTML += `
-                    <div class="polaroid w-[290px] relative" style="transform: rotate(${rotation});">
-                        <div class="w-full aspect-square bg-cover bg-center mb-4 rounded-sm border border-gray-100" style="background-image: url('${p.src}')"></div>
-                        <p class="font-black text-red-900 text-lg tracking-tight mb-1 text-left">${p.title}</p>
-                        <p class="text-sm italic text-gray-500 text-left">${p.desc}</p>
-                        ${editingMode ? `<button onclick="deletePhoto(${p.id})" class="absolute -top-3 -right-3 bg-red-600 text-white w-9 h-9 rounded-full shadow-lg font-black flex items-center justify-center transition-transform hover:scale-110 active:scale-95">X</button>` : ''}
+                    <div class="polaroid w-[260px] relative transition-transform hover:scale-105" style="transform: rotate(${rotation});">
+                        <div class="w-full aspect-square bg-cover bg-center mb-3 rounded-sm border border-gray-100" style="background-image: url('${p.src}')"></div>
+                        <p class="font-black text-red-900 text-base tracking-tight mb-0.5 text-left">${p.title}</p>
+                        <p class="text-xs italic text-gray-500 text-left">${p.desc}</p>
+                        ${editingMode ? `<button onclick="deletePhoto(${p.id})" class="absolute -top-2.5 -right-2.5 bg-red-600 text-white w-7 h-7 rounded-full shadow-lg font-black flex items-center justify-center text-xs transition-transform hover:scale-110 active:scale-95">X</button>` : ''}
                     </div>
                 `;
             });
@@ -619,7 +627,7 @@
             grid.innerHTML = "";
             // Embaralhar as cartas
             memoryCards.sort(() => Math.random() - 0.5);
-            memoryCards.forEach((symbol, i) => {
+            memoryCards.forEach((symbol) => {
                 grid.innerHTML += `
                     <div class="memory-card" onclick="flipCard(this, '${symbol}')">
                         <div class="memory-card-inner">
@@ -657,7 +665,7 @@
             const allFlipped = document.querySelectorAll('.memory-card.flipped');
             if (allFlipped.length === memoryCards.length) {
                 celebrate();
-                showToast("Parabéns, amor! Você resolveu nosso jogo da memória! Ganhou um beijo gigante! 😘✨");
+                showToast("Parabéns, meu amor! Você resolveu nosso jogo da memória! Ganhou um beijo gigante! 😘✨");
             }
         }
 
@@ -668,7 +676,7 @@
             showToast("O Jogo da Memória foi reiniciado!");
         }
 
-        // CONTROLADOR DE AUDIO E MUSICA
+        // CONTROLADOR DE AUDIO E MUSICA (TANTOS MARES)
         let isPlaying = false;
         let audioInterval = null;
         let audioCtxInstance = null;
@@ -689,7 +697,6 @@
 
         function playMelody() {
             audioCtxInstance = new (window.AudioContext || window.webkitAudioContext)();
-            // Acordes românticos dedilhados de violão para simular "Tantos Mares"
             const chords = [
                 [293.66, 369.99, 440.00], // Re Maior
                 [246.94, 293.66, 440.00], // Si Menor
@@ -701,16 +708,15 @@
             audioInterval = setInterval(() => {
                 if (!isPlaying) return;
                 const now = audioCtxInstance.currentTime;
-                // Simulação de dedilhado (arpeggio)
                 chords[chordIdx % chords.length].forEach((freq, noteIdx) => {
                     const osc = audioCtxInstance.createOscillator();
                     const gainNode = audioCtxInstance.createGain();
                     
-                    osc.type = 'triangle'; // Som de flauta/violão suave
+                    osc.type = 'triangle'; 
                     osc.frequency.setValueAtTime(freq, now + noteIdx * 0.25);
                     
                     gainNode.gain.setValueAtTime(0, now);
-                    gainNode.gain.linearRampToValueAtTime(0.12, now + noteIdx * 0.25 + 0.05);
+                    gainNode.gain.linearRampToValueAtTime(0.10, now + noteIdx * 0.25 + 0.05);
                     gainNode.gain.exponentialRampToValueAtTime(0.001, now + noteIdx * 0.25 + 1.8);
                     
                     osc.connect(gainNode);
@@ -758,30 +764,28 @@
         function showToast(message) {
             const container = document.getElementById('toast-container');
             const toast = document.createElement('div');
-            toast.className = "bg-white border-l-4 border-red-500 p-4 shadow-2xl rounded-2xl mb-2 animate-bounce flex items-center gap-2 max-w-sm text-sm font-bold text-red-950";
+            toast.className = "bg-white border-l-4 border-red-500 p-3.5 shadow-xl rounded-xl mb-2 animate-bounce flex items-center gap-2 max-w-xs text-xs font-bold text-red-950";
             toast.innerHTML = `<i class="fas fa-heart text-red-500"></i> ${message}`;
             container.appendChild(toast);
             setTimeout(() => { toast.remove(); }, 4000);
         }
 
-        // Criando os corações caindo no fundo de forma poética
         function initHearts() {
             const container = document.getElementById('heart-container');
-            for(let i = 0; i < 22; i++) {
+            for(let i = 0; i < 20; i++) {
                 const heart = document.createElement('div');
                 heart.className = 'heart-particle';
                 heart.innerHTML = "❤️";
                 heart.style.left = Math.random() * 100 + "vw";
                 heart.style.animationDelay = Math.random() * 12 + "s";
-                heart.style.fontSize = (14 + Math.random() * 14) + "px";
+                heart.style.fontSize = (12 + Math.random() * 12) + "px";
                 container.appendChild(heart);
             }
         }
         initHearts();
 
-        // DOWNLOAD DO SITE ATUALIZADO COM AS FOTOS SALVAS EM BASE64
         function downloadHtml() {
-            if (editingMode) toggleEditMode(); // Desliga o modo de edição para salvar limpo
+            if (editingMode) toggleEditMode(); 
             
             const fullHtml = document.documentElement.outerHTML;
             const blob = new Blob([`<!DOCTYPE html>\n${fullHtml}`], { type: 'text/html' });
